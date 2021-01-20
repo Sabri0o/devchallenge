@@ -1,19 +1,9 @@
 import React from "react";
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 
 
-// class ImageCard extends React.Component {
-//     render() {
-//       return (
-//         <div>
-//           <img
-//             src={this.props.image}
-//             alt='test'
-//           />
-//         </div>
-//       );
-//     }
-//   }
 class ImageCard extends React.Component {
   constructor(props) {
     super(props);
@@ -32,16 +22,12 @@ class ImageCard extends React.Component {
   }
 
   render() {
-   // const { description, urls } = this.props.image;
-
     return (
       <div style={{ gridRowEnd: `span ${this.state.spans}` }}>
-        <Card.Img variant="top" src={this.props.image}  ref={this.imageRef} />
-        
+        <img ref={this.imageRef} src={this.props.image}  alt='blabla' />
       </div>
     );
   }
 }
 
 export default ImageCard;
-/*<img ref={this.imageRef} src={this.props.image} alt='blabla' />*/
