@@ -47,11 +47,16 @@ class Masonry extends React.Component{
 					return (
 						<div className="column" key={ci} >
 							{col.map((child, i) => {
-								return <div key={i} >{child}</div>
+								return (
+                                <div class="show-image" key={i} >
+                                    {child}
+                                    <input class="the-buttons" type="button" value=" Click " />
+                                    </div>)
 							})}
 						</div>
 					)
 				})}
+                 
 			</div>
 		)
 	}
