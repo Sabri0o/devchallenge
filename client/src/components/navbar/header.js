@@ -17,7 +17,7 @@ export default function Header() {
             height="30"/>
       </Navbar.Brand>
       <FormControl  type="text" placeholder="Search"  />
-      <Button className="toggle-nav" >Add a photo</Button>
+      <Button  >Add a photo</Button>
     </Form>
     
   </Navbar>

@@ -1,26 +1,35 @@
+import React from "react";
+
 import './App.css';
-import Header from '../src/components/navbar/header'
+import Header from '../src/components/navbar/header';
+import ImageList from '../src/components/imageList/imagelist';
+import {samples} from '../src/dummyImages/samples'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return (
-    <div className="App">
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data : samples
+    };
+  }
+
+  componentDidMount(){
+    console.log(this.state.data)
+  }
+
+  render() {
+    return (
+          <div className="App">
+      
+      <main>
       <Header/>
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ImageList imagelist = {this.state.data} />
+      </main>
     </div>
-  );
+        )
+  }
 }
 
 export default App;
