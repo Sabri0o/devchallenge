@@ -42,4 +42,25 @@ module.exports = function(app) {
     });
   });
 
+  ///////////////////////// get all the images
+
+  app.post("/get_images", (request, response) => {
+    // collected image from a user
+    const data = {
+      image: request.body.image,
+      label:request.body.label
+    }
+  ////////////// 
+      db.iamges.findAll() 
+        .then(result =>{
+          response.send(result.map(x=>x.imageUrl))
+        })
+        .catch(err =>{
+          console.log('error: ',err)
+        })
+    })
+
+
+
+
 };
