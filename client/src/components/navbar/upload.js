@@ -41,7 +41,6 @@ return (
       </div>
 
 
-
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.handleClose}>Cancel</Button>

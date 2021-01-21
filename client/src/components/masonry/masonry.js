@@ -1,6 +1,9 @@
 import React from "react";
 import './masonry.css';
-
+import { MDBMask, MDBView, MDBContainer, MDBRow, MDBCol } from "mdbreact";
+//import '@fortawesome/fontawesome-free/css/all.min.css';
+//import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
 
 class Masonry extends React.Component{
@@ -47,9 +50,16 @@ class Masonry extends React.Component{
 						<div className="column" key={ci} >
 							{col.map((child, i) => {
 								return (
-                                <div class="show-image" key={i} >
-                                    {child}
-                                    <input class="the-buttons" type="button" value=" delete " />
+                                <div className="show-image" key={i} >
+                                    
+									<MDBView hover>
+              							{child}
+              							<MDBMask className="flex-center" overlay="red-light">
+										  <p className="white-text">Label comes here</p>
+              							</MDBMask>
+            						</MDBView>
+ 
+                                    <input className="the-buttons" type="button" value=" delete " />
                                     </div>)
 							})}
 						</div>
