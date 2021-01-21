@@ -14,7 +14,6 @@ import Button from 'react-bootstrap/Button';
 
 import Upload from '../src/components/navbar/upload';
 
-
 // class App extends React.Component {
 //   constructor(props) {
 //     super(props);
@@ -64,8 +63,6 @@ import Upload from '../src/components/navbar/upload';
 //   }
  
 // }
-
-
 // export default App;
 import Masonry from '../src/components/masonry/masonry';
 import bsCustomFileInput from 'bs-custom-file-input';
@@ -78,12 +75,12 @@ class App extends React.Component{
       images : samples,
       show : false,
       brakePoints:[350, 500, 750],
-      toUpload : '',
+      toUpload : 'nothing yet',
       file:''
     };
     this.showModal = this.showModal.bind(this)
     this.hideModal = this.hideModal.bind(this)
-    this.selectFile = this.selectFile.bind(this)
+    //this.selectFile = this.selectFile.bind(this)
   }
 
 
@@ -109,11 +106,12 @@ class App extends React.Component{
       
       reader.onload = (event) => {
         this.state.toUpload = event.target.result 
-        console.log("image to upload",event.target.result )
+        //console.log("image to upload",event.target.result )
         this.state.file = thisFile[0].name
-        console.log( this.state.file)
+        //console.log( this.state.file)
       }
     }
+    
     if (this.customFileInit) {
       bsCustomFileInput.destroy();
     }
@@ -140,7 +138,11 @@ class App extends React.Component{
                  </Form>
                 </Navbar>
 				<div className="masonry-container">
-        <Upload show={this.state.show} handleClose={this.hideModal} uploadImage = {this.selectFile} fileName={this.state.file}>
+        <Upload show={this.state.show} 
+                handleClose={this.hideModal} 
+                selectFile = {this.selectFile} 
+                fileName={this.state.file}
+                fileToUpload={this.state.toUpload}>
             <p>Modal</p>
             <p>Data</p>
         </Upload>

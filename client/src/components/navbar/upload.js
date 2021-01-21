@@ -5,10 +5,126 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import bsCustomFileInput from 'bs-custom-file-input';
 
+import $ from 'jquery'
 
 
 
-// bsCustomFileInput.init()
+class Upload extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      label: '',
+      toUpload : 'nothing yet',
+      file:''
+    };
+
+    this.uploadImage = this.uploadImage.bind(this)
+    this.onChange = this.onChange.bind(this)
+    /////
+    this.selectFile = this.selectFile.bind(this)
+
+  }
+
+  componentDidMount() {
+    bsCustomFileInput.init()
+  }
+
+  //////
+
+  selectFile = (event) => {    // add event to parameter
+    let thisFile = event.target.files
+    if (thisFile){
+      var reader = new FileReader();
+      reader.readAsDataURL(thisFile[0])
+      // this.state.file = event.target.files[0].name
+      
+      reader.onload = (event) => {
+        this.setState({
+          toUpload : event.target.result,
+          file :thisFile[0].name
+        })
+        //this.state.toUpload = event.target.result 
+        //console.log("image to upload",event.target.result )
+        //this.state.file = thisFile[0].name
+        //console.log( this.state.file)
+      }
+    }
+    
+    if (this.customFileInit) {
+      bsCustomFileInput.destroy();
+    }
+    bsCustomFileInput.init();
+    this.customFileInit = true;
+  }
+
+///////
+
+  onChange (event) {
+    //console.log(event.target.value)
+    this.setState({
+      label:event.target.value
+    })
+  }
+
+  uploadImage () {
+    //console.log('image string: ',this.state.toUpload)
+    //console.log('file name: ',this.state.label)
+
+    $.post("http://localhost:8080/upload_image",
+      {
+        "image": this.state.toUpload,
+        "label": this.state.label,
+      },
+    (res) => {
+       console.log('server response: ',res)
+      }
+    )
+  };
+
+
+  render() {
+    return (
+      <Modal
+        show={this.props.show} onHide={this.props.handleClose} onChange = {this.selectFile}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered>
+
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+              Add photo
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+
+          <Form.Label>Image Label</Form.Label>
+          <Form.Control type="text" placeholder="label" onChange={this.onChange}/>
+ 
+
+
+          <Form>
+           <Form.File 
+              id="custom-file"
+              label="Custom file input"
+              custom
+            />
+          </Form>
+    
+    
+           </Modal.Body>
+           <Modal.Footer>
+             <Button onClick={this.props.handleClose}>Cancel</Button>
+             <Button onClick={this.uploadImage}>Upload</Button>
+           </Modal.Footer>
+         </Modal>
+    );
+  }
+}
+
+ export default Upload;
+
+
+ // bsCustomFileInput.init()
 
 // var btn = document.getElementById('btnResetForm')
 // var form = document.querySelector('form')
@@ -165,57 +281,3 @@ import bsCustomFileInput from 'bs-custom-file-input';
 //   }
 
 //     export default Upload;
-
-
-class Upload extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: 'React'
-    };
-  }
-
-  componentDidMount() {
-    bsCustomFileInput.init()
-  }
-
-  render() {
-    return (
-      
-
-
-              <Modal
-        show={this.props.show} onHide={this.props.handleClose} onChange = {this.props.uploadImage}
-          size="lg"
-          aria-labelledby="contained-modal-title-vcenter"
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title id="contained-modal-title-vcenter">
-              Add photo
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-    
-    
-          <Form>
-  <Form.File 
-    id="custom-file"
-    label="Custom file input"
-    custom
-  />
-</Form>
-    
-    
-           </Modal.Body>
-           <Modal.Footer>
-             <Button onClick={this.props.handleClose}>Cancel</Button>
-             <Button >Upload</Button>
-           </Modal.Footer>
-         </Modal>
-
-    );
-  }
-}
-
-    export default Upload;
