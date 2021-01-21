@@ -16,6 +16,6 @@ const db = {};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-db.users = require("../models/users.model.js")(sequelize, Sequelize);
+db.iamges = require("../models/uploads.model.js")(sequelize, Sequelize);
 
 module.exports = db;

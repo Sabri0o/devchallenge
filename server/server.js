@@ -5,15 +5,6 @@ require('dotenv').config()
 
 const app = express();
 
-// const cloudinary = require("cloudinary").v2;
-
-// // cloudinary configuration
-
-// cloudinary.config({
-//   cloud_name: "testing-mctc-project",
-//   api_key: "591627645258192",
-//   api_secret: "38izIqLk7vqZhs9MLVGj3aRqBx0"
-// });
 
 var corsOptions = {
   origin: "http://localhost:8081"
@@ -44,14 +35,14 @@ db.sequelize.sync()
 // db.sequelize.sync({ force: true }).then(() => {
 //   console.log("Drop and re-sync db.");
 // });
-// //////
+// ////
 
 // simple route for testing
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to 'mi casa es tu casa' application. \n this is a GET route for test" });
 });
 ////We also need to include routes in server.js (right before app.listen()):
-require("./routes/users.routes")(app);
+require("./routes/uploads.routes")(app);
 // set port, listen for requests
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
