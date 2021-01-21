@@ -16,21 +16,17 @@ module.exports = function(app) {
     // collected image from a user
     const data = {
       image: request.body.image,
+      label:request.body.label
     }
-    console.log('connected user: ',connectedId)
     console.log('post request sent to cloudinary')
-    //console.log('data.image here',data.image)
     // upload image here
     cloudinary.uploader.upload(data.image)
     .then((image) => {
       console.log('cloudinary stored it successfully')
-  ////////////// console.log the loged in user id
-      db.iamges.update(
-        {room_picture: image.secure_url,
-        status:data.status,
-        room_space:data.room_space,
-        guest_or_host:'host'},
-        { where: { id: connectedId } }) //// change id value with thisUserid later
+  ////////////// 
+      db.iamges.create(
+        {imageUrl: image.secure_url,
+        label: data.label}) 
         .then(result =>{
           response.send(result)
         })
