@@ -14,58 +14,10 @@ import Button from 'react-bootstrap/Button';
 
 import Upload from '../src/components/navbar/upload';
 
-// class App extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       data : samples,
-//       show : false
-//     };
-//     this.showModal = this.showModal.bind(this)
-//     this.hideModal = this.hideModal.bind(this)
-//   }
 
-//   showModal = () => {
-//     console.log('clicked to show !!! ')
-//     this.setState({ show: true });
-//   };
-
-//   hideModal = () => {
-//     console.log('clicked to hide !!! ')
-
-//     this.setState({ show: false });
-//   };
-
-//   render() {
-//     return (
-//           <div className="App">
-//               <Navbar >
-//                 <Form inline>
-//                 <Navbar.Brand>
-//                   <img
-//                     src="https://inconclusive-clock.surge.sh/static/media/my_unsplash_logo.e948d53e.svg"
-//                     width="140"
-//                     height="30"/>
-//                 </Navbar.Brand>
-//                 <FormControl  type="text" placeholder="Search"  />
-//                <Button onClick={this.showModal} >Add a photo</Button>
-//                </Form>
-//               </Navbar>
-//       <main>
-//       <Upload show={this.state.show} handleClose={this.hideModal}>
-//           <p>Modal</p>
-//           <p>Data</p>
-//       </Upload>
-//       <ImageList imagelist={this.state.data}/>
-//       </main>
-//     </div>
-//         )
-//   }
- 
-// }
-// export default App;
 import Masonry from '../src/components/masonry/masonry';
 import bsCustomFileInput from 'bs-custom-file-input';
+import $ from 'jquery'
 
 
 class App extends React.Component{
@@ -80,10 +32,23 @@ class App extends React.Component{
     };
     this.showModal = this.showModal.bind(this)
     this.hideModal = this.hideModal.bind(this)
-    //this.selectFile = this.selectFile.bind(this)
+    this.getData = this.getData.bind(this)
   }
 
+  componentDidMount() {
+    console.log('triggered')
+    $.post("http://localhost:8080/get_images",
+    {},
+  (res) => {
+     console.log('images from database')
+     this.setState({
+       images : res
+     })
+    }
+  )
 
+  
+  }
 
   showModal = () => {
     console.log('clicked to show !!! ')
@@ -96,29 +61,10 @@ class App extends React.Component{
     this.setState({ show: false });
   };
 
-
-  selectFile = (event) => {    // add event to parameter
-    let thisFile = event.target.files
-    if (thisFile){
-      var reader = new FileReader();
-      reader.readAsDataURL(thisFile[0])
-      // this.state.file = event.target.files[0].name
-      
-      reader.onload = (event) => {
-        this.state.toUpload = event.target.result 
-        //console.log("image to upload",event.target.result )
-        this.state.file = thisFile[0].name
-        //console.log( this.state.file)
-      }
-    }
-    
-    if (this.customFileInit) {
-      bsCustomFileInput.destroy();
-    }
-    bsCustomFileInput.init();
-    this.customFileInit = true;
-  }
-
+  getData = (val) =>{
+    // samples.unshift(val.imageUrl);
+    this.componentDidMount()
+}
 
 	render(){
 		return (
@@ -140,9 +86,7 @@ class App extends React.Component{
 				<div className="masonry-container">
         <Upload show={this.state.show} 
                 handleClose={this.hideModal} 
-                selectFile = {this.selectFile} 
-                fileName={this.state.file}
-                fileToUpload={this.state.toUpload}>
+                sendData={this.getData}>
             <p>Modal</p>
             <p>Data</p>
         </Upload>

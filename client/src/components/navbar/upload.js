@@ -76,11 +76,12 @@ class Upload extends React.Component {
         "label": this.state.label,
       },
     (res) => {
-       console.log('server response: ',res)
+       console.log('server response')
+       this.props.sendData(res)
+       alert('done')
       }
     )
   };
-
 
   render() {
     return (
