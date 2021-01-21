@@ -68,6 +68,7 @@ import Upload from '../src/components/navbar/upload';
 
 // export default App;
 import Masonry from '../src/components/masonry/masonry';
+import bsCustomFileInput from 'bs-custom-file-input';
 
 
 class App extends React.Component{
@@ -84,6 +85,8 @@ class App extends React.Component{
     this.hideModal = this.hideModal.bind(this)
     this.selectFile = this.selectFile.bind(this)
   }
+
+
 
   showModal = () => {
     console.log('clicked to show !!! ')
@@ -111,6 +114,11 @@ class App extends React.Component{
         console.log( this.state.file)
       }
     }
+    if (this.customFileInit) {
+      bsCustomFileInput.destroy();
+    }
+    bsCustomFileInput.init();
+    this.customFileInit = true;
   }
 
 
