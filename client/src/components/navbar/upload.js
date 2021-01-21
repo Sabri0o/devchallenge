@@ -1,6 +1,8 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import React from "react";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
 
 
 
@@ -19,12 +21,27 @@ return (
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
+
+
+      <div className="input-group">
+        <div className="input-group-prepend">
+  
+        </div>
+        <div className="custom-file">
+          <input
+            type="file"
+            className="custom-file-input"
+            id="inputGroupFile01"
+            aria-describedby="inputGroupFileAddon01"
+          />
+        <label className="custom-file-label" htmlFor="inputGroupFile01">
+        Choose file
+        </label>
+        </div>
+      </div>
+
+
+
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.handleClose}>Cancel</Button>

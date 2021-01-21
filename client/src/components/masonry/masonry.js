@@ -25,7 +25,6 @@ class Masonry extends React.Component{
 		if(columns !== this.state.columns){
 			this.setState({columns: columns});	
 		}
-		
 	}
 	
 	mapChildren(){
@@ -50,7 +49,7 @@ class Masonry extends React.Component{
 								return (
                                 <div class="show-image" key={i} >
                                     {child}
-                                    <input class="the-buttons" type="button" value=" Click " />
+                                    <input class="the-buttons" type="button" value=" delete " />
                                     </div>)
 							})}
 						</div>
