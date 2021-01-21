@@ -76,10 +76,13 @@ class App extends React.Component{
     this.state = {
       images : samples,
       show : false,
-      brakePoints:[350, 500, 750]
+      brakePoints:[350, 500, 750],
+      toUpload : '',
+      file:''
     };
     this.showModal = this.showModal.bind(this)
     this.hideModal = this.hideModal.bind(this)
+    this.selectFile = this.selectFile.bind(this)
   }
 
   showModal = () => {
@@ -92,6 +95,24 @@ class App extends React.Component{
 
     this.setState({ show: false });
   };
+
+
+  selectFile = (event) => {    // add event to parameter
+    let thisFile = event.target.files
+    if (thisFile){
+      var reader = new FileReader();
+      reader.readAsDataURL(thisFile[0])
+      // this.state.file = event.target.files[0].name
+      
+      reader.onload = (event) => {
+        this.state.toUpload = event.target.result 
+        console.log("image to upload",event.target.result )
+        this.state.file = thisFile[0].name
+        console.log( this.state.file)
+      }
+    }
+  }
+
 
 	render(){
 		return (
@@ -111,7 +132,7 @@ class App extends React.Component{
                  </Form>
                 </Navbar>
 				<div className="masonry-container">
-        <Upload show={this.state.show} handleClose={this.hideModal}>
+        <Upload show={this.state.show} handleClose={this.hideModal} uploadImage = {this.selectFile} fileName={this.state.file}>
             <p>Modal</p>
             <p>Data</p>
         </Upload>

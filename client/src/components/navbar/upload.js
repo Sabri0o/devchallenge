@@ -10,7 +10,7 @@ const Upload = (props) => {
 
 return (
     <Modal
-    show={props.show} onHide={props.handleClose}
+    show={props.show} onHide={props.handleClose} onChange = {props.uploadImage}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
       centered
@@ -33,9 +33,11 @@ return (
             className="custom-file-input"
             id="inputGroupFile01"
             aria-describedby="inputGroupFileAddon01"
+            onChange = {props.uploadImage}
+            
           />
         <label className="custom-file-label" htmlFor="inputGroupFile01">
-        Choose file
+        {props.fileName}
         </label>
         </div>
       </div>
