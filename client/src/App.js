@@ -78,9 +78,10 @@ class App extends React.Component{
                       src="https://inconclusive-clock.surge.sh/static/media/my_unsplash_logo.e948d53e.svg"
                       width="140"
                       height="30"/>
-                  </Navbar.Brand>
+                  
                   <FormControl  type="text" placeholder="Search"  />
                  <Button onClick={this.showModal} >Add a photo</Button>
+                 </Navbar.Brand>
                  </Form>
                 </Navbar>
 				<div className="masonry-container">
