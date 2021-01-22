@@ -56,7 +56,7 @@ module.exports = function(app) {
           ['createdAt', 'DESC']]
       }) 
       .then(result =>{
-          response.send(result.map(x=>x.imageUrl))
+          response.send(result)
         })
         .catch(err =>{
           console.log('error: ',err)
