@@ -62,4 +62,24 @@ module.exports = function(app) {
           console.log('error: ',err)
         })
     })
+
+///////////////////////////////////////////  delete image
+
+app.post('/delete_image', function(request, response) {
+
+  const data = {
+    id : request.body.id
+  }
+  db.iamges.destroy({
+    where: {
+      id: data.id,
+  }
+})
+    .then(()=>{
+      response.send({ message: "image deleted successfully" })
+    })
+    .catch(err => {
+      response.status(500).send({ message: err.message });
+    });
+  })
 };
