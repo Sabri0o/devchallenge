@@ -5,7 +5,6 @@ import {samples} from '../src/dummyImages/samples'
 import 'bootstrap/dist/css/bootstrap.min.css';
 ///
 
-import Navbar from 'react-bootstrap/Navbar';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
@@ -15,6 +14,7 @@ import Upload from '../src/components/navbar/upload';
 
 import Masonry from '../src/components/masonry/masonry';
 import $ from 'jquery'
+import '../src/components/masonry/masonry.css';
 
 
 class App extends React.Component{
@@ -24,7 +24,7 @@ class App extends React.Component{
       images : samples,
       copy : [],
       show : false,
-      brakePoints:[350, 500, 750],
+      brakePoints:[350, 500],
       toUpload : 'nothing yet',
       file:''
     };
@@ -75,20 +75,23 @@ class App extends React.Component{
 
 	render(){
 		return (
-			<div class="form-group">
-              <Navbar expand="lg">
+
+			<div className="container">
+           
                   <Form inline>
-                  <Navbar.Brand>
+                  <Form.Group >
+                  <br />
                     <img
                       src="https://inconclusive-clock.surge.sh/static/media/my_unsplash_logo.e948d53e.svg"
                       width="140"
                       height="30"/>
-                  
+                   <br />
                   <FormControl  onChange={this.search}  type="text" placeholder="Search"  />
-                 <Button onClick={this.showModal} >Add a photo</Button>
-                 </Navbar.Brand>
-                 </Form>
-                </Navbar>
+                  <br />
+                 <Button variant="success" onClick={this.showModal} >Add a photo</Button>
+                 </Form.Group>
+                  </Form>
+       
 				<div className="masonry-container">
         <Upload show={this.state.show} 
                 handleClose={this.hideModal} 

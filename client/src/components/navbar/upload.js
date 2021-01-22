@@ -1,10 +1,8 @@
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import React, { useEffect } from "react";
+import React from "react";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
 import bsCustomFileInput from 'bs-custom-file-input';
-
 import $ from 'jquery'
 
 
@@ -15,14 +13,14 @@ class Upload extends React.Component {
     this.state = {
       label: '',
       toUpload : 'nothing yet',
-      file:''
+      file:'',
+      isLoading : false
     };
 
     this.uploadImage = this.uploadImage.bind(this)
     this.onChange = this.onChange.bind(this)
     /////
-    this.selectFile = this.selectFile.bind(this)
-
+    //this.selectFile = this.selectFile.bind(this)
   }
 
   componentDidMount() {
@@ -69,6 +67,9 @@ class Upload extends React.Component {
   uploadImage () {
     //console.log('image string: ',this.state.toUpload)
     //console.log('file name: ',this.state.label)
+    this.setState({
+      isLoading : true
+    })
 
     $.post("http://localhost:8080/upload_image",
       {
@@ -78,10 +79,13 @@ class Upload extends React.Component {
     (res) => {
        console.log('server response')
        this.props.sendData(res)
-       alert('done')
+       this.setState({
+        isLoading : false
+       })
       }
     )
   };
+
 
   render() {
     return (
@@ -97,25 +101,24 @@ class Upload extends React.Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-
-          <Form.Label>Image Label</Form.Label>
-          <Form.Control type="text" placeholder="label" onChange={this.onChange}/>
- 
-
-
           <Form>
+          <Form.Label >Image Label :</Form.Label>
+          <Form.Control  type="text" placeholder="label" onChange={this.onChange}/>
+ 
+<br/>
+          <Form.Label>Image Path :</Form.Label>
            <Form.File 
               id="custom-file"
-              label="Custom file input"
+              label="...."
               custom
-            />
+            />  
           </Form>
     
     
            </Modal.Body>
            <Modal.Footer>
-             <Button onClick={this.props.handleClose}>Cancel</Button>
-             <Button onClick={this.uploadImage}>Upload</Button>
+             <Button disabled={this.state.isLoading} onClick={this.props.handleClose}>Cancel</Button>
+             <Button disabled={this.state.isLoading} onClick={!this.state.isLoading ? this.uploadImage : null}>{this.state.isLoading ? 'Loading…' : 'Upload'}</Button>
            </Modal.Footer>
          </Modal>
     );

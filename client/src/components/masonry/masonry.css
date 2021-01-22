@@ -1,11 +1,17 @@
 
 
+.container{
+	width: 80%;
+	margin: auto;
+	margin-top: 20px;
+	/*border: 1px solid rgba(0,0,0,.1);*/
+}
+
+
 .masonry-container{
 	width: 100%;
-	margin: auto;
-	margin-top: 10px;
+	margin-top: 20px;
 	/*border: 1px solid rgba(0,0,0,.1);*/
-	
 }
 .masonry-container p{
     text-align: center;
@@ -95,7 +101,7 @@ div.show-image input {
     border: 3px solid ;
     border-radius: 12px;
     background: transparent;
-    padding: 5px 10px;
+    padding: 1px 1px;
     cursor: pointer;
     font-weight: 600;
 }
