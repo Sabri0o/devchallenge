@@ -4,6 +4,7 @@ import { MDBMask, MDBView, MDBContainer, MDBRow, MDBCol } from "mdbreact";
 //import '@fortawesome/fontawesome-free/css/all.min.css';
 //import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
+import $ from 'jquery'
 
 
 class Masonry extends React.Component{
@@ -44,8 +45,20 @@ class Masonry extends React.Component{
 		}, col);
 	}
 //////////////////////
-	delete() {
-		console.log()
+	delete(ele) {
+		console.log(ele)
+		$.post("http://localhost:8080/delete_image",
+		{"id":ele},
+		(res) => {
+			//console.log('images from database',res)
+				// this.setState({
+				// 	images : res,
+				// 	copy : res
+				// })
+				console.log('server response')
+				this.props.sendData(res)
+			}
+		)
 	}
 /////////////////////
 	render(){
@@ -56,16 +69,16 @@ class Masonry extends React.Component{
 						<div className="column" key={ci} >
 							{col.map((child, i) => {
 								return (
-                                <div className="show-image" key={i} >
-                                    
+                                <div className="show-image" key={i} id={i}>
 									<MDBView hover>
               							{child}
               							<MDBMask className="flex-center" overlay="red-light">
 										  <p className="white-text">{child.props.src.label}</p>
+										  <input onClick={()=>this.delete(child.props.src.id)}  className="the-buttons" type="button" value=" delete " />
               							</MDBMask>
             						</MDBView>
-                                    <input className="the-buttons" type="button" value=" delete " />
-                                    </div>)
+                                    
+                                </div>)
 							})}
 						</div>
 					)

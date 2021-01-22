@@ -42,7 +42,7 @@ class App extends React.Component{
     $.post("http://localhost:8080/get_images",
     {},
     (res) => {
-      console.log('images from database',res)
+      //console.log('images from database',res)
       this.setState({
         images : res,
         copy : res
@@ -52,12 +52,12 @@ class App extends React.Component{
   }
 
   showModal = () => {
-    console.log('clicked to show !!! ')
+    //console.log('clicked to show !!! ')
     this.setState({ show: true });
   };
 
   hideModal = () => {
-    console.log('clicked to hide !!! ')
+    //console.log('clicked to hide !!! ')
 
     this.setState({ show: false });
   };
@@ -68,8 +68,8 @@ class App extends React.Component{
   }
 
   search = (event)=>{
-    console.log('query: ',event.target.value)
-    console.log(this.state.images.filter(x=>x.label.includes(event.target.value)))
+    //console.log('query: ',event.target.value)
+    //console.log(this.state.images.filter(x=>x.label.includes(event.target.value)))
     this.setState({
       images : this.state.copy.filter(x=>x.label.includes(event.target.value))
     })
@@ -99,7 +99,7 @@ class App extends React.Component{
             <p>Modal</p>
             <p>Data</p>
         </Upload>
-        <Masonry brakePoints={this.state.brakePoints} >
+        <Masonry brakePoints={this.state.brakePoints} sendData={this.getData} >
           {this.state.images.map((image, id) => {
 							return (
 								<Tile key={id} src={image} />
