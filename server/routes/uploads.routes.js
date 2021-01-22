@@ -51,16 +51,15 @@ module.exports = function(app) {
       label:request.body.label
     }
   ////////////// 
-      db.iamges.findAll() 
-        .then(result =>{
+      db.iamges.findAll({
+        order: [
+          ['createdAt', 'DESC']]
+      }) 
+      .then(result =>{
           response.send(result.map(x=>x.imageUrl))
         })
         .catch(err =>{
           console.log('error: ',err)
         })
     })
-
-
-
-
 };
