@@ -25,6 +25,7 @@ class App extends React.Component{
     super(props);
     this.state = {
       images : samples,
+      copy : [],
       show : false,
       brakePoints:[350, 500, 750],
       toUpload : 'nothing yet',
@@ -33,21 +34,21 @@ class App extends React.Component{
     this.showModal = this.showModal.bind(this)
     this.hideModal = this.hideModal.bind(this)
     this.getData = this.getData.bind(this)
+    this.search = this.search.bind(this)
   }
 
   componentDidMount() {
-    console.log('triggered')
+    //console.log('triggered')
     $.post("http://localhost:8080/get_images",
     {},
-  (res) => {
-     console.log('images from database')
-     this.setState({
-       images : res
-     })
-    }
-  )
-
-  
+    (res) => {
+      console.log('images from database',res)
+      this.setState({
+        images : res,
+        copy : res
+        })
+      }
+    )
   }
 
   showModal = () => {
@@ -64,12 +65,23 @@ class App extends React.Component{
   getData = (val) =>{
     // samples.unshift(val.imageUrl);
     this.componentDidMount()
-}
+  }
+
+  search = (event)=>{
+    console.log('query: ',event.target.value)
+    console.log(this.state.images.filter(x=>x.label.includes(event.target.value)))
+    this.setState({
+      images : this.state.copy.filter(x=>x.label.includes(event.target.value))
+    })
+    
+  }
+
+
+
+
 
 	render(){
 		return (
-
-
 			<div className="container">
               <Navbar >
                   <Form inline>
@@ -79,7 +91,7 @@ class App extends React.Component{
                       width="140"
                       height="30"/>
                   
-                  <FormControl  type="text" placeholder="Search"  />
+                  <FormControl  onChange={this.search}  type="text" placeholder="Search"  />
                  <Button onClick={this.showModal} >Add a photo</Button>
                  </Navbar.Brand>
                  </Form>
@@ -94,7 +106,7 @@ class App extends React.Component{
         <Masonry brakePoints={this.state.brakePoints}>
           {this.state.images.map((image, id) => {
 							return (
-								<Tile src={image} />
+								<Tile key={id} src={image.imageUrl} />
 							) 
 						})}
 					</Masonry>
