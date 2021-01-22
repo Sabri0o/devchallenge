@@ -76,10 +76,6 @@ class App extends React.Component{
     
   }
 
-
-
-
-
 	render(){
 		return (
 			<div className="container">
@@ -103,10 +99,10 @@ class App extends React.Component{
             <p>Modal</p>
             <p>Data</p>
         </Upload>
-        <Masonry brakePoints={this.state.brakePoints}>
+        <Masonry brakePoints={this.state.brakePoints} >
           {this.state.images.map((image, id) => {
 							return (
-								<Tile key={id} src={image.imageUrl} />
+								<Tile key={id} src={image} />
 							) 
 						})}
 					</Masonry>
@@ -119,7 +115,7 @@ class App extends React.Component{
 const Tile = ({src}) => {
   return (
     <div className="tile">
-			<img src={src} />
+			<img src={src.imageUrl} />
 		</div>
   );
 };

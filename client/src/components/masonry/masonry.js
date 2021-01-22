@@ -11,6 +11,8 @@ class Masonry extends React.Component{
 		super(props);
 		this.state = {columns: 1};
 		this.onResize = this.onResize.bind(this);
+		//
+		this.delete = this.delete.bind(this)
 	}
 	componentDidMount(){
 		this.onResize();
@@ -41,7 +43,11 @@ class Masonry extends React.Component{
 			return p;
 		}, col);
 	}
-	
+//////////////////////
+	delete() {
+		console.log()
+	}
+/////////////////////
 	render(){
 		return (
 			<div className="masonry" ref="Masonry">
@@ -55,10 +61,9 @@ class Masonry extends React.Component{
 									<MDBView hover>
               							{child}
               							<MDBMask className="flex-center" overlay="red-light">
-										  <p className="white-text">Label comes here</p>
+										  <p className="white-text">{child.props.src.label}</p>
               							</MDBMask>
             						</MDBView>
- 
                                     <input className="the-buttons" type="button" value=" delete " />
                                     </div>)
 							})}
