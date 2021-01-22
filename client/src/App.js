@@ -1,8 +1,6 @@
 import React from "react";
 
 import './App.css';
-//import Header from '../src/components/navbar/header';
-import ImageList from '../src/components/imageList/imagelist';
 import {samples} from '../src/dummyImages/samples'
 import 'bootstrap/dist/css/bootstrap.min.css';
 ///
@@ -16,7 +14,6 @@ import Upload from '../src/components/navbar/upload';
 
 
 import Masonry from '../src/components/masonry/masonry';
-import bsCustomFileInput from 'bs-custom-file-input';
 import $ from 'jquery'
 
 
@@ -78,8 +75,8 @@ class App extends React.Component{
 
 	render(){
 		return (
-			<div className="container">
-              <Navbar >
+			<div class="form-group">
+              <Navbar expand="lg">
                   <Form inline>
                   <Navbar.Brand>
                     <img

@@ -1,6 +1,6 @@
 import React from "react";
 import './masonry.css';
-import { MDBMask, MDBView, MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { MDBMask, MDBView } from "mdbreact";
 //import '@fortawesome/fontawesome-free/css/all.min.css';
 //import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
@@ -72,8 +72,8 @@ class Masonry extends React.Component{
                                 <div className="show-image" key={i} id={i}>
 									<MDBView hover>
               							{child}
-              							<MDBMask className="flex-center" overlay="red-light">
-										  <p className="white-text">{child.props.src.label}</p>
+              							<MDBMask className="flex-center" overlay="blue-light">
+										  <p placement='bottom' className="white-text">{child.props.src.label}</p>
 										  <input onClick={()=>this.delete(child.props.src.id)}  className="the-buttons" type="button" value=" delete " />
               							</MDBMask>
             						</MDBView>
