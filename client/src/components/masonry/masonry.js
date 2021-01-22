@@ -72,12 +72,11 @@ class Masonry extends React.Component{
                                 <div className="show-image" key={i} id={i}>
 									<MDBView hover>
               							{child}
-              							<MDBMask className="flex-center" overlay="blue-light">
+              							<MDBMask className="flex-center" overlay='blue-light'>
 										  <p placement='bottom' className="white-text">{child.props.src.label}</p>
 										  <input onClick={()=>this.delete(child.props.src.id)}  className="the-buttons" type="button" value=" delete " />
               							</MDBMask>
             						</MDBView>
-                                    
                                 </div>)
 							})}
 						</div>

@@ -28,6 +28,7 @@
 	width: 100%;
 	margin: auto;
 }
+
 .column{
 	display: flex;
 	flex-direction: column;
@@ -37,8 +38,9 @@
     padding: 4px;
 
 }
+
 .tile{
-	margin: 4px;
+    margin: 4px;
 }
 
 .tile img{
@@ -47,6 +49,9 @@
     width: 100%;
 }
 
+
+
+  
 
 
 div.show-image {
@@ -66,35 +71,6 @@ div.show-image input {
     display:none;
 }
 
-/* div.show-image .bottom-left {
-    position:absolute;
-    bottom:12px;
-    right:12px;
-    font-size: 18px;
-    background: none;
-    color : rgb(199, 58, 58)
-} */
-
-/* 
-
-.div.show-image .bottom-left {
-    align-self: flex-end;
-    color: var(--color-burnt-sienna);
-    border: 1px solid var(--color-burnt-sienna);
-    border-radius: 12px;
-    background: transparent;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: all .2s;
-    transition-property: all;
-    transition-duration: 0.2s;
-    transition-timing-function: ease;
-    transition-delay: 0s;
-    font-weight: 600;
-} */
-
-
-
 .the-buttons {
     align-self: flex-end;
     color: rgb(219, 13, 13);
@@ -109,9 +85,8 @@ div.show-image input {
 
 div.show-image .white-text {
     position:absolute;
-    bottom:12px;
+    bottom:1px;
     right:12px;
     font-size: 25px;
     background: none;
-    color : rgb(11, 48, 214)
 }

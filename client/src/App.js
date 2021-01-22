@@ -99,7 +99,7 @@ class App extends React.Component{
             <p>Modal</p>
             <p>Data</p>
         </Upload>
-        <Masonry brakePoints={this.state.brakePoints} sendData={this.getData} >
+        <Masonry brakePoints={this.state.brakePoints} sendData={this.getData} className='image-container'>
           {this.state.images.map((image, id) => {
 							return (
 								<Tile key={id} src={image} />
