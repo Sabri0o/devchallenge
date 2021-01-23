@@ -1,92 +1,82 @@
-
-
-.container{
-	width: 80%;
-	margin: auto;
-	margin-top: 20px;
-	/*border: 1px solid rgba(0,0,0,.1);*/
+.container {
+  width: 80%;
+  margin: auto;
+  margin-top: 20px;
+  /*border: 1px solid rgba(0,0,0,.1);*/
 }
 
-
-.masonry-container{
-	width: 100%;
-	margin-top: 20px;
-	/*border: 1px solid rgba(0,0,0,.1);*/
+.masonry-container {
+  width: 100%;
+  margin-top: 20px;
+  /*border: 1px solid rgba(0,0,0,.1);*/
 }
-.masonry-container p{
-    text-align: center;
-    padding: 4px;
-    font-family: monospace;
-    background: #222;
-    color: #efefef;
+.masonry-container p {
+  text-align: center;
+  padding: 4px;
+  font-family: monospace;
+  background: #222;
+  color: #efefef;
 }
-.masonry{
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-content: stretch;
-	width: 100%;
-	margin: auto;
-}
-
-.column{
-	display: flex;
-	flex-direction: column;
-	justify-content: flex-start;
-	align-content: stretch;
-    flex-grow: 1;
-    padding: 4px;
-
+.masonry {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: stretch;
+  width: 100%;
+  margin: auto;
 }
 
-.tile{
-    margin: 4px;
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: stretch;
+  flex-grow: 1;
+  padding: 4px;
 }
 
-.tile img{
-    box-shadow: 0 1px 1px 2px rgba(0,0,0, .15);
-    border-radius: 10px;
-    width: 100%;
+.tile {
+  margin: 4px;
 }
 
-
-
-  
-
+.tile img {
+  box-shadow: 0 1px 1px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  width: 100%;
+}
 
 div.show-image {
-    position: relative;
-    float:left;
-    margin:5px;}
+  position: relative;
+  float: left;
+  margin: 5px;
+}
 
-div.show-image:hover input
-  {
+div.show-image:hover input {
   display: block;
-  }
+}
 
 div.show-image input {
-    position:absolute;
-    top:12px;
-    left:12px;
-    display:none;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: none;
 }
 
 .the-buttons {
-    align-self: flex-end;
-    color: rgb(219, 13, 13);
-    border: 3px solid ;
-    border-radius: 12px;
-    background: transparent;
-    padding: 1px 1px;
-    cursor: pointer;
-    font-weight: 600;
+  align-self: flex-end;
+  color: rgb(219, 13, 13);
+  border: 3px solid;
+  border-radius: 12px;
+  background: transparent;
+  padding: 1px 1px;
+  cursor: pointer;
+  font-weight: 600;
 }
 
-
 div.show-image .white-text {
-    position:absolute;
-    bottom:1px;
-    right:12px;
-    font-size: 25px;
-    background: none;
+  position: absolute;
+  bottom: 1px;
+  right: 12px;
+  font-size: 25px;
+  background: none;
 }
