@@ -70,18 +70,17 @@ class Upload extends React.Component {
     this.setState({
       isLoading : true
     })
-
     $.post("http://localhost:8080/upload_image",
       {
         "image": this.state.toUpload,
         "label": this.state.label,
       },
     (res) => {
-       console.log('server response')
-       this.props.sendData(res)
-       this.setState({
-        isLoading : false
-       })
+        console.log('server response')
+        this.props.sendData(res)
+        this.setState({
+         isLoading : false
+        })
       }
     )
   };
@@ -117,7 +116,7 @@ class Upload extends React.Component {
            </Modal.Body>
            <Modal.Footer>
              <Button disabled={this.state.isLoading} onClick={this.props.handleClose}>Cancel</Button>
-             <Button disabled={this.state.isLoading} onClick={!this.state.isLoading ? this.uploadImage : null}>{this.state.isLoading ? 'Loading…' : 'Upload'}</Button>
+             <Button disabled={this.state.isLoading} onClick={!this.state.isLoading && this.state.toUpload !== 'nothing yet' ? this.uploadImage : null}>{this.state.isLoading ? 'Loading…' : 'Upload'}</Button>
            </Modal.Footer>
          </Modal>
     );
